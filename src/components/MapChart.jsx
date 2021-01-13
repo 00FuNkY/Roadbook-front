@@ -117,7 +117,7 @@ const MapChart = ({ setTooltipContent }) => {
             <text
               textAnchor="middle"
               y={markerOffset}
-              style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
+              style={{ fontFamily: "system-ui", fill: "#5D5A6D", pointerEvents: 'none' }}
             >
               {name}
             </text>
