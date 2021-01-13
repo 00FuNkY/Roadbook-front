@@ -5,6 +5,8 @@ import MapChart from "./MapChart";
 
 const Home = ({ x, y }) => {
   const [content, setContent] = useState("");
+  
+
   return (
     <>
       <CitiesList x={x} y={y} />
