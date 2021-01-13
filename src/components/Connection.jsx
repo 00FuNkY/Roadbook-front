@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 const axios = require("axios");
 
 function Connection() {
   const [token, setToken] = useState("");
+  const history = useHistory();
 
   const sendData = (e) => {
     e.preventDefault()
@@ -13,8 +13,9 @@ function Connection() {
       email: form.email,
       password: form.password,
     })
-    .then(res => setToken(res.data))
+    .then(res => setToken(res.data.token))
     .then(() => localStorage.setItem('token', token))
+    .then(history.push('/home'))
   }
 
   const [form, setForm] = useState({});
@@ -22,7 +23,7 @@ function Connection() {
 
 
   return (
-    <StyledForm>
+    <form>
       <label htmlFor="email">
         email :
         <input
@@ -42,12 +43,9 @@ function Connection() {
       <button type="submit" value="Submit" onClick={(e) => sendData(e)}>
         ENVOYER
       </button>
-    </StyledForm>
+    </form>
   );
 }
 
-const StyledForm = styled.form`
-
-`
 
 export default Connection;

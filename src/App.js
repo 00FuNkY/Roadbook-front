@@ -21,21 +21,30 @@ const useMousePosition = () => {
 
 function App() {
   const { x, y } = useMousePosition()
+  const token = localStorage.getItem('token')
 
-  
+  // useEffect(() => {
+  //   const temp = localStorage.getItem('token');
+  //   setToken(temp)
+  //   console.log(token);
+  //   console.log(localStorage.token);
+  // }, [])
   return (
     <div className="App">
       <GlobalStyle />
-          <Connection exact path='/' />
       <Router>
-        <Switch>
-          <Route path='/home'>
-            <Home x={x} y={y} />
-          </Route>
-          <Route path='/home/:id'>
-            <CityPage />
-          </Route>
-        </Switch>
+        {!token ?
+          <Connection exact path='/' />
+          :
+          <Switch>
+            <Route exact path='/home'>
+              <Home x={x} y={y} />
+            </Route>
+            <Route path='/home/:id'>
+              <CityPage />
+            </Route>
+          </Switch>
+        }
       </Router>
     </div >
   );
