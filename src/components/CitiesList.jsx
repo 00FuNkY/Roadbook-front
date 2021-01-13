@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { data } from '../assets/cities_images'
 
 const CitiesList = ({ x, y }) => {
+  const history = useHistory()
   const cityName = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState(null)
@@ -26,6 +28,7 @@ const CitiesList = ({ x, y }) => {
             className={isHovered ? 'isHovered' : ''}
             ref={cityName}
             key={i}
+            onClick={() => history.push(`/${i}`)}
           >{city.name}</h1>
         })}
       </ StyledList>
