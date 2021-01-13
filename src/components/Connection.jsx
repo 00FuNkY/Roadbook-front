@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 const axios = require("axios");
 
 function Connection() {
@@ -11,14 +13,16 @@ function Connection() {
       email: form.email,
       password: form.password,
     })
-    .then((res) => console.log(res.data))
-    // .then(console.log("this is token", token));
+    .then(res => setToken(res.data))
+    .then(() => localStorage.setItem('token', token))
   }
 
   const [form, setForm] = useState({});
 
+
+
   return (
-    <form>
+    <StyledForm>
       <label htmlFor="email">
         email :
         <input
@@ -38,8 +42,12 @@ function Connection() {
       <button type="submit" value="Submit" onClick={(e) => sendData(e)}>
         ENVOYER
       </button>
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+
+`
 
 export default Connection;

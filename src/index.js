@@ -7,7 +7,6 @@ import Connection from "./components/Connection";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Connection />
     <App />
   </React.StrictMode>,
   document.getElementById("root")

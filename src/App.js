@@ -1,8 +1,9 @@
 import Home from './components/Home';
 import GlobalStyle from './globalStyle';
 import { useEffect, useState } from 'react';
-import { Route, BrowserRouter as Router , Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import CityPage from './components/Citypage.';
+import Connection from './components/Connection';
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -20,15 +21,18 @@ const useMousePosition = () => {
 
 function App() {
   const { x, y } = useMousePosition()
+
+  
   return (
     <div className="App">
       <GlobalStyle />
+          <Connection exact path='/' />
       <Router>
         <Switch>
-          <Route exact path='/'>
+          <Route path='/home'>
             <Home x={x} y={y} />
           </Route>
-          <Route path='/:id'>
+          <Route path='/home/:id'>
             <CityPage />
           </Route>
         </Switch>
