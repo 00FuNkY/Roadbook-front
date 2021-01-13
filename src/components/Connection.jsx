@@ -4,14 +4,16 @@ const axios = require("axios");
 function Connection() {
   const [token, setToken] = useState("");
 
-  const sendData = () =>
+  const sendData = (e) => {
+    e.preventDefault()
     axios
-      .post("http://localhost:3090/auth", {
-        email: form.email,
-        password: form.password,
-      })
-      .then((res) => setToken(res.token))
-      .then(console.log("this is token", token));
+    .post("http://localhost:5000/auth", {
+      email: form.email,
+      password: form.password,
+    })
+    .then((res) => console.log(res.data))
+    // .then(console.log("this is token", token));
+  }
 
   const [form, setForm] = useState({});
 
@@ -33,7 +35,7 @@ function Connection() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
       </label>
-      <button type="submit" value="Submit" onSubmit={sendData}>
+      <button type="submit" value="Submit" onClick={(e) => sendData(e)}>
         ENVOYER
       </button>
     </form>
