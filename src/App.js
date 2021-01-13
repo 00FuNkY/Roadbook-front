@@ -23,12 +23,6 @@ function App() {
   const { x, y } = useMousePosition()
   const token = localStorage.getItem('token')
 
-  // useEffect(() => {
-  //   const temp = localStorage.getItem('token');
-  //   setToken(temp)
-  //   console.log(token);
-  //   console.log(localStorage.token);
-  // }, [])
   return (
     <div className="App">
       <GlobalStyle />
