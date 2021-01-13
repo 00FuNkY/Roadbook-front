@@ -1,9 +1,9 @@
 import CitiesList from "./CitiesList";
 
-const Home = () => {
+const Home = ({x, y}) => {
   return ( 
     <>
-    <CitiesList />
+    <CitiesList x={x} y={y}/>
     {/* <Map/> */}
     </>
    );
