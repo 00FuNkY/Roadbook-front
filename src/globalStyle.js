@@ -9,7 +9,11 @@ const GlobalStyle = createGlobalStyle`
 
   body{
     font-family: 'Cormorant', serif;
+    overflow-x: hidden;
+    background-color: #ECEEE8;
   }
+
+  
 `
 
 export default GlobalStyle;

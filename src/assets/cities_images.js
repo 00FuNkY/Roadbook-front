@@ -19,3 +19,9 @@ export const data = [{
   url: 'https://www.google.com/search?q=city+image&sxsrf=ALeKk00dnNHWRBO9cCASu1NggRaetR0xRA:1610542791002&tbm=isch&source=iu&ictx=1&fir=KsqmrjsrnScraM%252CIgPdAdX_6UbCuM%252C_&vet=1&usg=AI4_-kQhosADjZfnrUivO4B-HAvexKu02Q&sa=X&ved=2ahUKEwjB3c-3-5juAhVFQhoKHU3hCzYQ9QF6BAgQEAE#imgrc=KsqmrjsrnScraM'
 }
 ]
+
+export const images = [
+    'https://images.unsplash.com/photo-1468436385273-8abca6dfd8d3?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8YW1zdGVyZGFtfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1519475889208-0968e5438f7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8YW1zdGVyZGFtfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    'https://images.unsplash.com/photo-1540162012087-7ba92165d4da?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YW1zdGVyZGFtfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'
+]
