@@ -3,8 +3,6 @@ import "./App.css";
 import Home from "./components/Home";
 import GlobalStyle from "./globalStyle";
 import { useEffect, useState } from "react";
-import MapChart from "./components/MapChart";
-import ReactTooltip from "react-tooltip";
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -22,13 +20,11 @@ const useMousePosition = () => {
 
 function App() {
   const { x, y } = useMousePosition();
-  const [content, setContent] = useState("");
+
   return (
     <div className="App">
       <GlobalStyle />
       <Home x={x} y={y} />
-      <MapChart setTooltipContent={setContent} />
-      <ReactTooltip>{content}</ReactTooltip>
     </div>
   );
 }
