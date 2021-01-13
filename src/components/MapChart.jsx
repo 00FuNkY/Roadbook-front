@@ -21,7 +21,7 @@ const rounded = (num) => {
 
 const markers = [
   {
-    markerOffset: 15,
+    markerOffset: -5,
     name: "Paris",
     coordinates: [2.3488, 48.8534],
   },
@@ -53,7 +53,7 @@ const markers = [
   { markerOffset: -5, name: "Pristina", coordinates: [21.16688, 42.67272] },
   { markerOffset: -5, name: "Riga", coordinates: [24.10589, 56.946] },
   { markerOffset: -10, name: "Vilnius", coordinates: [25.2798, 54.68916] },
-  { markerOffset: -5, name: "Luxembourg", coordinates: [6.13, 49.61167] },
+  { markerOffset: 20, name: "Luxembourg", coordinates: [6.13, 49.61167] },
   { markerOffset: 15, name: "Skopje", coordinates: [21.43141, 41.99646] },
   { markerOffset: -5, name: "Chişinău", coordinates: [28.8575, 47.00556] },
   { markerOffset: 10, name: "Podgorica", coordinates: [19.26361, 42.44111] },
