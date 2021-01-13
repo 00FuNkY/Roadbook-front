@@ -21,7 +21,7 @@ const rounded = (num) => {
 
 const markers = [
   {
-    markerOffset: 15,
+    markerOffset: -5,
     name: "Paris",
     coordinates: [2.3488, 48.8534],
   },
@@ -36,12 +36,12 @@ const markers = [
   { markerOffset: 15, name: "Vienne", coordinates: [16.37208, 48.20849] },
   { markerOffset: -5, name: "Copenhague", coordinates: [12.56553, 55.67594] },
   { markerOffset: 15, name: "Minsk", coordinates: [27.56667, 53.9] },
-  { markerOffset: 7, name: "Sofia", coordinates: [23.32415, 42.69751] },
+  { markerOffset: -5, name: "Sofia", coordinates: [23.32415, 42.69751] },
   { markerOffset: 15, name: "Zagreb", coordinates: [15.97798, 45.81444] },
   { markerOffset: -5, name: "Helsinki", coordinates: [24.93545, 60.16952] },
   { markerOffset: -5, name: "Athènes", coordinates: [23.71622, 37.97945] },
-  { markerOffset: 15, name: "Budapest", coordinates: [19.03991, 47.49801] },
-  //   { markerOffset: 5, name: "Reykjavik", coordinates: [-21.89541, 64.13548] },
+  { markerOffset: 20, name: "Budapest", coordinates: [19.03991, 47.49801] },
+  { markerOffset: -5, name: "Reykjavik", coordinates: [-21.89541, 64.13548] },
   {
     markerOffset: -5,
     name: "Andorre-la-vieille",
@@ -54,10 +54,10 @@ const markers = [
   { markerOffset: -5, name: "Riga", coordinates: [24.10589, 56.946] },
   { markerOffset: -10, name: "Vilnius", coordinates: [25.2798, 54.68916] },
   { markerOffset: -5, name: "Luxembourg", coordinates: [6.13, 49.61167] },
-  { markerOffset: 15, name: "Skopje", coordinates: [21.43141, 41.99646] },
+  { markerOffset: 20, name: "Skopje", coordinates: [21.43141, 41.99646] },
   { markerOffset: -5, name: "Chişinău", coordinates: [28.8575, 47.00556] },
   { markerOffset: 10, name: "Podgorica", coordinates: [19.26361, 42.44111] },
-  { markerOffset: 15, name: "Oslo", coordinates: [10.74609, 59.91273] },
+  { markerOffset: -5, name: "Oslo", coordinates: [10.74609, 59.91273] },
   { markerOffset: -15, name: "Amsterdam", coordinates: [4.88969, 52.37403] },
   { markerOffset: -5, name: "Varsovie", coordinates: [21.01178, 52.22977] },
   { markerOffset: -5, name: "Prague", coordinates: [14.42076, 50.08804] },
@@ -66,7 +66,7 @@ const markers = [
   { markerOffset: -5, name: "Bratislava", coordinates: [17.10674, 48.14816] },
   { markerOffset: -5, name: "Ljubljana", coordinates: [14.50513, 46.05108] },
   { markerOffset: -5, name: "Berne", coordinates: [7.44744, 46.94809] },
-  { markerOffset: -5, name: "Stockholm", coordinates: [18.0649, 59.33258] },
+  { markerOffset: 15, name: "Stockholm", coordinates: [18.0649, 59.33258] },
   { markerOffset: -5, name: "Kiev", coordinates: [30.5238, 50.45466] },
 ];
 
@@ -75,7 +75,7 @@ const MapChart = ({ setTooltipContent }) => {
     <>
       <ComposableMap
         data-tip=""
-        projectionConfig={{ rotate: [-20.0, -50.0, 0], scale: 1000 }}
+        projectionConfig={{ rotate: [-1.0, -52.0, 0], scale: 950 }}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
