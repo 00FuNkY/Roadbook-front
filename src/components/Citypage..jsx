@@ -41,10 +41,18 @@ const StyledScrollContainer = styled.div`
     max-width: 100%; 
   }
   h1{
-    font-size: 10vh;
+    font-size: 9em;
     letter-spacing: 5vw;
     max-width: 100vw;
     font-weight: 100;
+  }
+  @media (max-width: 768px){
+    h1{
+      font-size: 2em;
+    }
+    img{
+      transform: none!important;
+    }
   }
 `
 
