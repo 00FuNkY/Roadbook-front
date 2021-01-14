@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { context } from "./context";
 
 const CityPage = () => {
   const { id } = useParams();
@@ -9,45 +10,53 @@ const CityPage = () => {
   const [city, setCity] = useState({});
   const [cityImages, setCityImages] = useState([]);
   const handleScroll = () => setOffsetY(window.pageYOffset);
+  const { setTokenApp, tokenApp } = useContext(context);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/city/${id}`)
-      .then(res => setCity(res.data))
+      .get(`http://localhost:3090/city/${id}`, {
+        headers: {
+          Authorization: `Bearer ${tokenApp}`,
+        },
+      })
+      .then((res) => setCity(res.data));
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     setCityImages(city.image_id);
-  }, [city])
+  }, [city]);
 
   useEffect(() => {
     console.log(cityImages);
-  }, [cityImages])
+  }, [cityImages]);
 
-  if(!cityImages){
-    return <h1>Loading</h1>
+  if (!cityImages) {
+    return <h1>Loading</h1>;
+  } else {
+    return (
+      <StyledScrollContainer>
+        <h1>{city.name}</h1>
+        {cityImages.map((image, i) => {
+          let translate = "";
+          i % 2 === 0 ? (translate = "+") : (translate = "-");
+          return (
+            <img
+              src={image.link}
+              alt="city-images"
+              style={{
+                transform: `translate(${translate}200px, ${offsetY * 0.8}px)`,
+              }}
+              key={i}
+            />
+          );
+        })}
+      </StyledScrollContainer>
+    );
   }
-  else{
-  return (
-    <StyledScrollContainer>
-      <h1>{city.name}</h1>
-      {cityImages.map((image, i) => {
-        let translate = '';
-        i % 2 === 0 ? translate = '+' : translate = '-';
-        return <img
-          src={image.link}
-          alt="city-images"
-          style={{ transform: `translate(${translate}200px, ${offsetY * 0.8}px)` }}
-          key={i}
-        />
-      })}
-    </StyledScrollContainer>
-  );
-  }
-}
+};
 
 const StyledScrollContainer = styled.div`
   display: flex;
@@ -55,24 +64,24 @@ const StyledScrollContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   min-height: 200vh;
-  img{
+  img {
     height: auto;
-    max-width: 100%; 
+    max-width: 100%;
   }
-  h1{
+  h1 {
     font-size: 9em;
     letter-spacing: 5vw;
     max-width: 100vw;
     font-weight: 100;
   }
-  @media (max-width: 768px){
-    h1{
+  @media (max-width: 768px) {
+    h1 {
       font-size: 2em;
     }
-    img{
-      transform: none!important;
+    img {
+      transform: none !important;
     }
   }
-`
+`;
 
 export default CityPage;
