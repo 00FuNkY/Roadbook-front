@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { images } from '../assets/cities_images';
 import styled from "styled-components";
 import axios from "axios";
 
 const CityPage = () => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [offsetY, setOffsetY] = useState(0);
   const [city, setCity] = useState({});
-  const [cityImages, setCityImages] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [cityImages, setCityImages] = useState([]);
   const handleScroll = () => setOffsetY(window.pageYOffset);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const CityPage = () => {
 
   useEffect(() => {
     console.log(cityImages);
-    cityImages && setLoading(false)
   }, [cityImages])
 
   if(!cityImages){
