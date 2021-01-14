@@ -67,7 +67,7 @@ const StyledScrollContainer = styled.div`
   justify-content: space-evenly;
   min-height: 200vh;
   img {
-    height: auto;
+    max-height: 400px;
     max-width: 100%;
   }
   h1 {
