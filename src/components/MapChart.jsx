@@ -60,7 +60,14 @@ const markers = [
 
 const MapChart = ({ setTooltipContent }) => {
   const [hoveredCountry, setHoveredCountry] = useState(0);
-  const { userId, userImages, setUserImages, tokenApp, setLoading } = useContext(context)
+  const [cityName, setCityName] = useState('');
+  const [src, setSrc] = useState('')
+  const { userId, userImages, setUserImages, tokenApp, setLoading } = useContext(context);
+// console.log(userImages);
+  const findPicture = () => {
+    const picture = userImages.filter(image => image.city.country === cityName)
+    setSrc(`<img src=${picture[0]?.link}/>`)
+  }
 
 return (
     <>
@@ -75,13 +82,15 @@ return (
                 key={geo.rsmKey}
                 geography={geo}
                 onMouseOver={() => {
-                  const image = userImages[0].link;
-                  setTooltipContent(`<img src=${image}/>`);
                   setHoveredCountry(geo.rsmKey)
+                  setCityName(geo.properties.NAME)
+                  findPicture()
+                  setTooltipContent(src);
+                  console.log(src);
                 }}
                 onMouseLeave={() => {
                   setTooltipContent("");
-                  setHoveredCountry(null)
+                  setHoveredCountry(null);
                 }}
                 style={{
                   default: {

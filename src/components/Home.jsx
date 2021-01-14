@@ -11,6 +11,7 @@ const Home = ({ x, y }) => {
   const { userId, setUserId, setUserImages, tokenApp, setLoading, loading } = useContext(context)
 
   useEffect(() => {
+    if(userId)
     axios
       .get(`${API_URL}/city/visited?userId=${userId}`, {
         headers: {
@@ -28,8 +29,8 @@ const Home = ({ x, y }) => {
   return (
     <>
       <CitiesList x={x} y={y} />
-      <MapChart setTooltipContent={setContent} />
-      <ReactTooltip html={true}>{content}</ReactTooltip>
+      <MapChart setTooltipContent={setContent} x={x} y={y} />
+      <ReactTooltip html={true} getContent={() => content}></ReactTooltip>
     </>
   );
 };
