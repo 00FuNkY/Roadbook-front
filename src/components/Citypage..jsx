@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { context } from "./context";
+import { API_URL } from "../env";
+
 
 const CityPage = () => {
   const { id } = useParams();
@@ -14,7 +16,7 @@ const CityPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3090/city/${id}`, {
+      .get(`${API_URL}/city/${id}`, {
         headers: {
           Authorization: `Bearer ${tokenApp}`,
         },

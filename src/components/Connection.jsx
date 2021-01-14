@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { context } from "./context";
 import Sign from "./Sign";
+import { API_URL } from "../env";
 
 const axios = require("axios");
 
@@ -14,7 +15,7 @@ function Connection() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3090/auth", {
+      .post(`${API_URL}/auth`, {
         email: form.email,
         password: form.password,
       })

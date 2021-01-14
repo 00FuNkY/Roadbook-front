@@ -27,7 +27,7 @@ const CitiesList = ({ x, y }) => {
   useEffect(() => {
     // const token = localStorage.getItem('token')
     axios
-      .get(`http://localhost:3090/city`, {
+      .get(`${API_URL}/city`, {
         headers: {
           Authorization: `Bearer ${tokenApp}`,
         },
