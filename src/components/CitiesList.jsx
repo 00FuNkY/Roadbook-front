@@ -1,14 +1,16 @@
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { data } from '../assets/cities_images'
+import { data, images } from '../assets/cities_images'
 
 const CitiesList = ({ x, y }) => {
   const history = useHistory()
   const cityName = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [index, setIndex] = useState(null)
-
+  const [cities, setCities] = useState([])
+  
   const mouseEnterHandler = (i) => {
     setIsHovered(true)
     setIndex(i)
@@ -17,24 +19,32 @@ const CitiesList = ({ x, y }) => {
     setIsHovered(false)
     setIndex(-1)
   }
+  
+  useEffect(() => {
+    // const token = localStorage.getItem('token')
+    axios
+      .get('http://localhost:5000/city')
+      .then(res => setCities(res.data))
+  }, [])
 
   return (
     <StyledContainer>
       <StyledList>
-        {data.map((city, i) => {
+        {cities
+        .map((city, i) => {
           return <h1
             onMouseEnter={() => mouseEnterHandler(i)}
             onMouseLeave={mouseLeaveHandler}
             className={isHovered ? 'isHovered' : ''}
             ref={cityName}
             key={i}
-            onClick={() => history.push(`/${i}`)}
+            onClick={() => history.push(`/home/${i}`)}
           >{city.name}</h1>
         })}
       </ StyledList>
       <StyledImageContainer>
         <StyledImage
-          src={data[index]?.url}
+          src={images[index]}
           style={{ transform: `translate(${x}px, ${y}px)` }}
         />
       </StyledImageContainer>
@@ -43,7 +53,6 @@ const CitiesList = ({ x, y }) => {
 }
 
 const StyledList = styled.div`
-  /* height: 100vh; */
   width: 50%;
   display: flex;
   flex-direction: column;
