@@ -1,26 +1,14 @@
-import axios from "axios";
-import React, { memo, useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
 } from "react-simple-maps";
-import { API_URL } from "../env";
 import { context } from "./context";
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
-
-const rounded = (num) => {
-  if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + "Bn";
-  } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + "M";
-  } else {
-    return Math.round(num / 100) / 10 + "K";
-  }
-};
 
 const markers = [
   {
@@ -46,11 +34,7 @@ const markers = [
   { markerOffset: -5, name: "Athènes", coordinates: [23.71622, 37.97945], rsmKey: 'geo-64' },
   { markerOffset: 20, name: "Budapest", coordinates: [19.03991, 47.49801], rsmKey: 'geo-71' },
   { markerOffset: -5, name: "Reykjavik", coordinates: [-21.89541, 64.13548], rsmKey: 'geo-77' },
-  {
-    markerOffset: -5,
-    name: "Andorre-la-vieille",
-    coordinates: [1.52109, 42.50779],
-  },
+  { markerOffset: -5, name: "Andorre-la-vieille", coordinates: [1.52109, 42.50779] },
   { markerOffset: -5, name: "Sarajevo", coordinates: [18.35644, 43.84864], rsmKey: 'geo-18' },
   { markerOffset: -5, name: "Nicosie", coordinates: [33.3642, 35.17531], rsmKey: 'geo-39' },
   { markerOffset: 15, name: "Tallinn", coordinates: [24.75353, 59.43696], rsmKey: 'geo-50' },
@@ -76,11 +60,9 @@ const markers = [
 
 const MapChart = ({ setTooltipContent }) => {
   const [hoveredCountry, setHoveredCountry] = useState(0);
-  const { userId } = useContext(context)
-  useEffect(() => {
-    axios.get(`${API_URL}/city/visited?userId=${userId}`, )
-  }, [])
-  return (
+  const { userId, userImages, setUserImages, tokenApp, setLoading } = useContext(context)
+
+return (
     <>
       <ComposableMap
         data-tip=""
@@ -92,12 +74,9 @@ const MapChart = ({ setTooltipContent }) => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                onClick={() => {
-                  console.log(geo.rsmKey);
-                }}
                 onMouseOver={() => {
-                  const { NAME, POP_EST } = geo.properties;
-                  setTooltipContent(`<img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y2l0eXxlbnwwfHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60'/>`);
+                  const image = userImages[0].link;
+                  setTooltipContent(`<img src=${image}/>`);
                   setHoveredCountry(geo.rsmKey)
                 }}
                 onMouseLeave={() => {

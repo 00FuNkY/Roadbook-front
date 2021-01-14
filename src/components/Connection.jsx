@@ -8,9 +8,9 @@ const axios = require("axios");
 
 function Connection() {
   const history = useHistory();
-  
+  const [form, setForm] = useState({});
 
-  const { setTokenApp, tokenApp, userId, setUserId } = useContext(context);
+  const { setTokenApp, setUserId } = useContext(context);
 
   const sendData = (e) => {
     e.preventDefault();
@@ -24,14 +24,8 @@ function Connection() {
         setTokenApp(res.data.token)
         setUserId(res.data.id)
       })
-
-      .then(history.push("/city"));
+      .then(history.push("/city"))
   };
-
-  useEffect(() => {
-    console.log(tokenApp);
-  }, [tokenApp]);
-  const [form, setForm] = useState({});
 
   return (
     <>
