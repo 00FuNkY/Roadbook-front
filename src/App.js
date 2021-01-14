@@ -1,12 +1,7 @@
 import Home from "./components/Home";
 import GlobalStyle from "./globalStyle";
 import { useEffect, useState } from "react";
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  useHistory,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import CityPage from "./components/Citypage.";
 import Connection from "./components/Connection";
 import { context } from "./components/context";
@@ -44,10 +39,10 @@ function App() {
         <context.Provider value={{ tokenApp, setTokenApp }}>
           {checkToken() ? (
             <Switch>
-              <Route exact path="/home">
+              <Route exact path="/city">
                 <Home x={x} y={y} />
               </Route>
-              <Route path="/home/:id">
+              <Route path="/city/:id">
                 <CityPage />
               </Route>
             </Switch>

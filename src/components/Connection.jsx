@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { context } from "./context";
 import Sign from "./Sign";
@@ -8,7 +8,7 @@ const axios = require("axios");
 function Connection() {
   const history = useHistory();
 
-  const { setTokenApp } = useContext(context);
+  const { setTokenApp, tokenApp } = useContext(context);
 
   const sendData = (e) => {
     e.preventDefault();
@@ -18,10 +18,14 @@ function Connection() {
         email: form.email,
         password: form.password,
       })
-      .then((res) => setTokenApp(res.data))
+      .then((res) => setTokenApp(res.data.token))
 
-      .then(history.push("/home"));
+      .then(history.push("/city"));
   };
+
+  useEffect(() => {
+    console.log(tokenApp);
+  }, [tokenApp]);
   const [form, setForm] = useState({});
 
   return (

@@ -10,7 +10,7 @@ function Sign() {
   const { setTokenApp } = useContext(context);
 
   const sendData = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     axios
       .post("http://localhost:3090/auth/sign", {
@@ -19,7 +19,7 @@ function Sign() {
       })
       .then((res) => setTokenApp(res.data))
 
-      .then(history.push("/home"));
+      .then(history.push("/"));
   };
   const [form, setForm] = useState({});
 
