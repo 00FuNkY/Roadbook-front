@@ -72,7 +72,7 @@ const markers = [
 ];
 
 const MapChart = ({ setTooltipContent }) => {
-  const [hoveredCountry, setHoveredCountry] = useState();
+  const [hoveredCountry, setHoveredCountry] = useState(0);
   return (
     <>
       <ComposableMap

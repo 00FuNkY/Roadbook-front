@@ -21,24 +21,29 @@ const useMousePosition = () => {
 
 function App() {
   const { x, y } = useMousePosition()
-  const token = localStorage.getItem('token')
+  const [stateToken, setStateToken] = useState()
+
+
+    const token = localStorage.getItem('token')
+
+
 
   return (
     <div className="App">
       <GlobalStyle />
       <Router>
-        {!token ?
-          <Connection exact path='/' />
-          :
+        {/* {!stateToken ? */}
+          {/* <Connection exact path='/' /> */}
+          {/* : */}
           <Switch>
-            <Route exact path='/home'>
+            <Route exact path='/city'>
               <Home x={x} y={y} />
             </Route>
-            <Route path='/home/:id'>
+            <Route path='/city/:id'>
               <CityPage />
             </Route>
           </Switch>
-        }
+        {/* } */}
       </Router>
     </div >
   );
