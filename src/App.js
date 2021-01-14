@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/Home';
 import GlobalStyle from './globalStyle';
 import { useEffect, useState } from 'react';
+import Upload from './components/Upload';
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({x: 0, y: 0})
@@ -11,11 +12,11 @@ useEffect(() => {
 const updateMousePosition = (e) => {
   setMousePosition({x: e.clientX, y: e.clientY})
 }
- window.addEventListener('mousemove', updateMousePosition)
- return () => window.removeEventListener('mousemove', updateMousePosition)
+  window.addEventListener('mousemove', updateMousePosition)
+  return () => window.removeEventListener('mousemove', updateMousePosition)
 }, [])
 
- return mousePosition
+  return mousePosition
 }
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Home x={x} y={y}/>
+      <Upload />
 
     </div>
   );
