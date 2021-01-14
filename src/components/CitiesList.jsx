@@ -38,7 +38,7 @@ const CitiesList = ({ x, y }) => {
             className={isHovered ? 'isHovered' : ''}
             ref={cityName}
             key={i}
-            onClick={() => history.push(`/home/${i}`)}
+            onClick={() => history.push(`/city/${i + 1}`)}
           >{city.name}</h1>
         })}
       </ StyledList>

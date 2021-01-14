@@ -33,13 +33,13 @@ function App() {
       <GlobalStyle />
       <Router>
         {/* {!stateToken ? */}
-          <Connection exact path='/' />
+          {/* <Connection exact path='/' /> */}
           {/* : */}
           <Switch>
-            <Route exact path='/home'>
+            <Route exact path='/city'>
               <Home x={x} y={y} />
             </Route>
-            <Route path='/home/:id'>
+            <Route path='/city/:id'>
               <CityPage />
             </Route>
           </Switch>

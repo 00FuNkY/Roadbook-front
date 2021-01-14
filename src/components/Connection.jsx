@@ -15,7 +15,7 @@ function Connection() {
     })
     .then(res => setToken(res.data.token))
     .then(() => localStorage.setItem('token', token))
-    .then(history.push('/home'))
+    .then(history.push('/city'))
   }
 
   const [form, setForm] = useState({});
