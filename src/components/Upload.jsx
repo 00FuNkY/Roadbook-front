@@ -33,8 +33,9 @@ constructor(props) {
     formdata.append('image', this.state.file)
     formdata.append('name', 'toto')
 
+  console.log(this.state.file);
 
-
+console.log(formdata);
     axios({
     url: 'http://localhost:5000/city/1/upload',
     method: 'POST',
