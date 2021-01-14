@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { context } from "./context";
+import { API_URL } from "../env";
+
 
 const CityPage = () => {
   const { id } = useParams();
@@ -14,7 +16,7 @@ const CityPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3090/city/${id}`, {
+      .get(`${API_URL}/city/${id}`, {
         headers: {
           Authorization: `Bearer ${tokenApp}`,
         },
@@ -65,7 +67,7 @@ const StyledScrollContainer = styled.div`
   justify-content: space-evenly;
   min-height: 200vh;
   img {
-    height: auto;
+    max-height: 400px;
     max-width: 100%;
   }
   h1 {

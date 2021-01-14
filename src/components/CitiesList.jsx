@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { data, images } from "../assets/cities_images";
+import { images } from "../assets/cities_images";
 import { context } from "./context";
 
 import { API_URL } from "../env";
@@ -27,7 +27,7 @@ const CitiesList = ({ x, y }) => {
   useEffect(() => {
     // const token = localStorage.getItem('token')
     axios
-      .get(`http://localhost:3090/city`, {
+      .get(`${API_URL}/city`, {
         headers: {
           Authorization: `Bearer ${tokenApp}`,
         },

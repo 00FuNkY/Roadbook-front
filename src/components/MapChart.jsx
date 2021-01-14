@@ -1,23 +1,14 @@
-import React, { memo, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
 } from "react-simple-maps";
+import { context } from "./context";
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
-
-const rounded = (num) => {
-  if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + "Bn";
-  } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + "M";
-  } else {
-    return Math.round(num / 100) / 10 + "K";
-  }
-};
 
 const markers = [
   {
@@ -43,11 +34,7 @@ const markers = [
   { markerOffset: -5, name: "Athènes", coordinates: [23.71622, 37.97945], rsmKey: 'geo-64' },
   { markerOffset: 20, name: "Budapest", coordinates: [19.03991, 47.49801], rsmKey: 'geo-71' },
   { markerOffset: -5, name: "Reykjavik", coordinates: [-21.89541, 64.13548], rsmKey: 'geo-77' },
-  {
-    markerOffset: -5,
-    name: "Andorre-la-vieille",
-    coordinates: [1.52109, 42.50779],
-  },
+  { markerOffset: -5, name: "Andorre-la-vieille", coordinates: [1.52109, 42.50779] },
   { markerOffset: -5, name: "Sarajevo", coordinates: [18.35644, 43.84864], rsmKey: 'geo-18' },
   { markerOffset: -5, name: "Nicosie", coordinates: [33.3642, 35.17531], rsmKey: 'geo-39' },
   { markerOffset: 15, name: "Tallinn", coordinates: [24.75353, 59.43696], rsmKey: 'geo-50' },
@@ -73,7 +60,17 @@ const markers = [
 
 const MapChart = ({ setTooltipContent }) => {
   const [hoveredCountry, setHoveredCountry] = useState(0);
-  return (
+  const [cityName, setCityName] = useState('');
+  const [src, setSrc] = useState('')
+  const { userId, userImages, setUserImages, tokenApp, setLoading } = useContext(context);
+// console.log(userImages);
+  const findPicture = () => {
+    const picture = userImages.filter(image => image.city.country === cityName)
+    // console.log(picture[0]);
+    setSrc(`<img src=${picture[0]?.link}/>`)
+  }
+
+return (
     <>
       <ComposableMap
         data-tip=""
@@ -85,17 +82,16 @@ const MapChart = ({ setTooltipContent }) => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                onClick={() => {
-                  console.log(geo.rsmKey);
-                }}
                 onMouseOver={() => {
-                  const { NAME, POP_EST } = geo.properties;
-                  setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
                   setHoveredCountry(geo.rsmKey)
+                  setCityName(geo.properties.NAME)
+                  console.log(src);
+                  findPicture()
+                  setTooltipContent(src);
                 }}
                 onMouseLeave={() => {
                   setTooltipContent("");
-                  setHoveredCountry(null)
+                  setHoveredCountry(null);
                 }}
                 style={{
                   default: {

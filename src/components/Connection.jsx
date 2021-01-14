@@ -2,31 +2,30 @@ import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { context } from "./context";
 import Sign from "./Sign";
+import { API_URL } from "../env";
 
 const axios = require("axios");
 
 function Connection() {
   const history = useHistory();
+  const [form, setForm] = useState({});
 
-  const { setTokenApp, tokenApp } = useContext(context);
+  const { setTokenApp, setUserId } = useContext(context);
 
   const sendData = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3090/auth", {
+      .post(`${API_URL}/auth`, {
         email: form.email,
         password: form.password,
       })
-      .then((res) => setTokenApp(res.data.token))
-
-      .then(history.push("/city"));
+      .then((res) => {
+        setTokenApp(res.data.token)
+        setUserId(res.data.id)
+      })
+      .then(history.push("/city"))
   };
-
-  useEffect(() => {
-    console.log(tokenApp);
-  }, [tokenApp]);
-  const [form, setForm] = useState({});
 
   return (
     <>
