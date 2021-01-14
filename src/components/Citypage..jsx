@@ -1,33 +1,52 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { images } from '../assets/cities_images';
 import styled from "styled-components";
+import axios from "axios";
 
 const CityPage = () => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [offsetY, setOffsetY] = useState(0);
+  const [city, setCity] = useState({});
+  const [cityImages, setCityImages] = useState([]);
   const handleScroll = () => setOffsetY(window.pageYOffset);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    axios
+      .get(`http://localhost:5000/city/${id}`)
+      .then(res => setCity(res.data))
 
-    return () => window.removeEventListener('scroll', handleScroll); 
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [])
 
+  useEffect(() => {
+    setCityImages(city.image_id);
+  }, [city])
+
+  useEffect(() => {
+    console.log(cityImages);
+  }, [cityImages])
+
+  if(!cityImages){
+    return <h1>Loading</h1>
+  }
+  else{
   return (
     <StyledScrollContainer>
-      <h1>AMSTERDAM</h1>
-   {images.map((image, i) => {
-     let translate = '';
-     i % 2 === 0 ? translate = '+' : translate = '-';
-     return <img 
-     src={image} 
-     alt="city-images"
-     style={{ transform: `translate(${translate}200px, ${offsetY * 0.8}px)`}}
-     />
-   })}
-  </StyledScrollContainer>
+      <h1>{city.name}</h1>
+      {cityImages.map((image, i) => {
+        let translate = '';
+        i % 2 === 0 ? translate = '+' : translate = '-';
+        return <img
+          src={image.link}
+          alt="city-images"
+          style={{ transform: `translate(${translate}200px, ${offsetY * 0.8}px)` }}
+          key={i}
+        />
+      })}
+    </StyledScrollContainer>
   );
+  }
 }
 
 const StyledScrollContainer = styled.div`
