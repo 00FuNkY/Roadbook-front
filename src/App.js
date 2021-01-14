@@ -23,6 +23,7 @@ const useMousePosition = () => {
 function App() {
   const { x, y } = useMousePosition();
   const [tokenApp, setTokenApp] = useState();
+  const [userId, setUserId] = useState(null);
 
   const checkToken = () => {
     if (tokenApp) {
@@ -36,7 +37,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Router>
-        <context.Provider value={{ tokenApp, setTokenApp }}>
+        <context.Provider value={{ tokenApp, setTokenApp, userId, setUserId }}>
           {checkToken() ? (
             <Switch>
               <Route exact path="/city">

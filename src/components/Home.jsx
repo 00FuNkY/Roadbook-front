@@ -11,8 +11,8 @@ const Home = ({ x, y }) => {
     <>
       <CitiesList x={x} y={y} />
       <MapChart setTooltipContent={setContent} />
-      <ReactTooltip>{content}</ReactTooltip>
-    </>
+      <ReactTooltip html={true} place='top'>{content}</ReactTooltip>
+    </> 
   );
 };
 

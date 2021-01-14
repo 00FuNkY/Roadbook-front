@@ -8,8 +8,9 @@ const axios = require("axios");
 
 function Connection() {
   const history = useHistory();
+  
 
-  const { setTokenApp, tokenApp } = useContext(context);
+  const { setTokenApp, tokenApp, userId, setUserId } = useContext(context);
 
   const sendData = (e) => {
     e.preventDefault();
@@ -19,7 +20,10 @@ function Connection() {
         email: form.email,
         password: form.password,
       })
-      .then((res) => setTokenApp(res.data.token))
+      .then((res) => {
+        setTokenApp(res.data.token)
+        setUserId(res.data.id)
+      })
 
       .then(history.push("/city"));
   };

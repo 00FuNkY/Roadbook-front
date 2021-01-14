@@ -1,10 +1,13 @@
-import React, { memo, useState } from "react";
+import axios from "axios";
+import React, { memo, useContext, useEffect, useState } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
 } from "react-simple-maps";
+import { API_URL } from "../env";
+import { context } from "./context";
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -73,6 +76,10 @@ const markers = [
 
 const MapChart = ({ setTooltipContent }) => {
   const [hoveredCountry, setHoveredCountry] = useState(0);
+  const { userId } = useContext(context)
+  useEffect(() => {
+    axios.get(`${API_URL}/city/visited?userId=${userId}`, )
+  }, [])
   return (
     <>
       <ComposableMap
@@ -90,7 +97,7 @@ const MapChart = ({ setTooltipContent }) => {
                 }}
                 onMouseOver={() => {
                   const { NAME, POP_EST } = geo.properties;
-                  setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                  setTooltipContent(`<img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8Y2l0eXxlbnwwfHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60'/>`);
                   setHoveredCountry(geo.rsmKey)
                 }}
                 onMouseLeave={() => {
