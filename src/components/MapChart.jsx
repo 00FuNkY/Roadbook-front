@@ -66,6 +66,7 @@ const MapChart = ({ setTooltipContent }) => {
 // console.log(userImages);
   const findPicture = () => {
     const picture = userImages.filter(image => image.city.country === cityName)
+    // console.log(picture[0]);
     setSrc(`<img src=${picture[0]?.link}/>`)
   }
 
@@ -84,9 +85,9 @@ return (
                 onMouseOver={() => {
                   setHoveredCountry(geo.rsmKey)
                   setCityName(geo.properties.NAME)
+                  console.log(src);
                   findPicture()
                   setTooltipContent(src);
-                  console.log(src);
                 }}
                 onMouseLeave={() => {
                   setTooltipContent("");

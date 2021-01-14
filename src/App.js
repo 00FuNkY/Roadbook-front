@@ -26,6 +26,7 @@ function App() {
   const [userId, setUserId] = useState(null);
   const [userImages, setUserImages] = useState();
   const [loading, setLoading] = useState(true)
+  const [src, setSrc] = useState('');
 
   const checkToken = () => {
     if (tokenApp) {
@@ -39,7 +40,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Router>
-        <context.Provider value={{ tokenApp, setTokenApp, userId, setUserId, userImages, setUserImages, loading, setLoading }}>
+        <context.Provider value={{ tokenApp, setTokenApp, userId, setUserId, userImages, setUserImages, loading, setLoading, src, setSrc }}>
           {checkToken() ? (
             <Switch>
               <Route exact path="/city">

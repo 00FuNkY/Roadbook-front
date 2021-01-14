@@ -8,7 +8,7 @@ import MapChart from "./MapChart";
 
 const Home = ({ x, y }) => {
   const [content, setContent] = useState("");
-  const { userId, setUserId, setUserImages, tokenApp, setLoading, loading } = useContext(context)
+  const { userId, setUserId, setUserImages, tokenApp, setLoading } = useContext(context)
 
   useEffect(() => {
     if(userId)
@@ -30,7 +30,7 @@ const Home = ({ x, y }) => {
     <>
       <CitiesList x={x} y={y} />
       <MapChart setTooltipContent={setContent} x={x} y={y} />
-      <ReactTooltip html={true} getContent={() => content}></ReactTooltip>
+      <ReactTooltip html={true} >{content}</ReactTooltip>
     </>
   );
 };
