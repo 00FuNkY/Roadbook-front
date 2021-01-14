@@ -7,20 +7,20 @@ function Connection() {
   const history = useHistory();
 
   const sendData = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
     axios
-    .post("http://localhost:5000/auth", {
-      email: form.email,
-      password: form.password,
-    })
-    .then(res => setToken(res.data.token))
-    .then(() => localStorage.setItem('token', token))
-    .then(history.push('/home'))
-  }
+      .post("http://localhost:3090/auth", {
+        email: form.email,
+        password: form.password,
+      })
+      .then((res) => setToken(res.data.token))
 
+      .then(() => localStorage.setItem("token", token))
+
+      .then(history.push("/home"));
+  };
   const [form, setForm] = useState({});
-
-
 
   return (
     <form>
@@ -46,6 +46,5 @@ function Connection() {
     </form>
   );
 }
-
 
 export default Connection;
