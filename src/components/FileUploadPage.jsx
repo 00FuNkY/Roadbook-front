@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { context } from "./context";
 
@@ -12,17 +13,18 @@ function FileUploadPage() {
     setIsSelected(true);
   };
 
-  const handleSubmission = () => {
+  const handleSubmission = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("File", selectedFile);
-    console.log(formData.get("File"));
-    fetch("http://localhost:5000/1/upload", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${tokenApp}`,
-      },
-    })
+
+    await axios
+      .post("http://localhost:5000/city", formData, {
+        headers: {
+          Authorization: `Bearer ${tokenApp}`,
+          "content-type": "multipart/form-data",
+        },
+      })
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
