@@ -18,7 +18,7 @@ function FileUploadPage() {
     const formData = new FormData();
     formData.append("files", selectedFile);
 
-    await axios.post("http://localhost:5000/city/1/upload", formData, {
+    await axios.post(`http://localhost:5000/city/1/upload`, formData, {
       headers: {
         Authorization: `Bearer ${tokenApp}`,
         "content-type": "multipart/form-data",
