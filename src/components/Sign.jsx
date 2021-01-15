@@ -41,7 +41,7 @@ function Sign() {
       <h4>PASSWORD</h4>
       <label htmlFor="password">
         <input
-          type="text"
+          type="password"
           name="password"
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
