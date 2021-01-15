@@ -1,10 +1,11 @@
-import "./App.css";
 import Home from "./components/Home";
 import GlobalStyle from "./globalStyle";
 import { useEffect, useState } from "react";
-// import Upload from "./components/Upload";
-// import SimpleReactFileUpload from "./components/UploadTest";
-// import FileUploadPage from "./components/FileUploadPage";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import CityPage from "./components/Citypage.";
+import Connection from "./components/Connection";
+import { context } from "./components/context";
+
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -21,13 +22,39 @@ const useMousePosition = () => {
 
 function App() {
   const { x, y } = useMousePosition();
+  const [tokenApp, setTokenApp] = useState();
+  const [userId, setUserId] = useState(null);
+  const [userImages, setUserImages] = useState();
+  const [loading, setLoading] = useState(true)
+  const [src, setSrc] = useState('');
+
+  const checkToken = () => {
+    if (tokenApp) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div className="App">
       <GlobalStyle />
-      <Home x={x} y={y} />
-      {/* <Upload />
-      <SimpleReactFileUpload />
-      <FileUploadPage /> */}
+      <Router>
+        <context.Provider value={{ tokenApp, setTokenApp, userId, setUserId, userImages, setUserImages, loading, setLoading, src, setSrc }}>
+          {checkToken() ? (
+            <Switch>
+              <Route exact path="/city">
+                <Home x={x} y={y} />
+              </Route>
+              <Route path="/city/:id">
+                <CityPage />
+              </Route>
+            </Switch>
+          ) : (
+            <Connection exact path="/" />
+          )}
+        </context.Provider>
+      </Router>
     </div>
   );
 }
