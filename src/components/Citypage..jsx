@@ -12,7 +12,7 @@ const CityPage = () => {
   const [city, setCity] = useState({});
   const [cityImages, setCityImages] = useState([]);
   const handleScroll = () => setOffsetY(window.pageYOffset);
-  const { setTokenApp, tokenApp } = useContext(context);
+  const { setTokenApp, tokenApp, userImages } = useContext(context);
 
   useEffect(() => {
     axios
@@ -35,13 +35,15 @@ const CityPage = () => {
     console.log(cityImages);
   }, [cityImages]);
 
-  if (!cityImages) {
+  if (!userImages) {
     return <h1>Loading</h1>;
   } else {
     return (
       <StyledScrollContainer>
         <h1>{city.name}</h1>
-        {cityImages.map((image, i) => {
+        {userImages
+        .filter(image => image.city.name === city.name )
+        .map((image, i) => {
           let translate = "";
           i % 2 === 0 ? (translate = "+") : (translate = "-");
           return (
