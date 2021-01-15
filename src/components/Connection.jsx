@@ -55,10 +55,37 @@ function Connection() {
         </button>     
       </form>
       </StyleForm>
+      <StyledContainer>
+        <StyledText>THE FINAL LOCKDOWN - </StyledText>
+        <StyledText>THE FINAL LOCKDOWN - </StyledText>
+        <StyledText>THE FINAL LOCKDOWN - </StyledText>
+      </StyledContainer>
       <Sign />
     </>
   );
 }
+
+const StyledContainer = styled.div`
+  overflow: hidden;
+  display: flex;
+  width: 100vw;
+  transform: translateY(-50%);
+`
+
+const StyledText = styled.div`
+  white-space: nowrap;
+  font-size: 6em;
+  animation: scrollTxt 10s linear infinite;
+@keyframes scrollTxt {
+  0%{
+    transform: translate(0%, 0);
+  }
+  100%{
+    transform: translate(-100%, 0);
+  }
+}
+
+`
 
 const StyleForm = styled.form`
 form {
@@ -67,6 +94,7 @@ form {
 	align-items: center;
   flex-direction: column;
   padding: 40px;
+  margin-bottom: 10vh;
 }
 
 label {

@@ -13,6 +13,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: #ECEEE8;
   }
 
+  img{
+    max-height: 400px;
+  }
   
 `
 
