@@ -65,9 +65,11 @@ const MapChart = ({ setTooltipContent }) => {
   const { userId, userImages, setUserImages, tokenApp, setLoading } = useContext(context);
 // console.log(userImages);
   const findPicture = () => {
-    const picture = userImages.filter(image => image.city.country === cityName)
-    // console.log(picture[0]);
-    setSrc(`<img src=${picture[0]?.link}/>`)
+    if(userImages){
+      const picture = userImages.filter(image => image.city.country === cityName)
+      // console.log(picture[0]);
+      setSrc(`<img src=${picture[0]?.link}/>`)
+    }
   }
 
 return (
