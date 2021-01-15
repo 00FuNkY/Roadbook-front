@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { context } from "./context";
 
 function FileUploadPage() {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
+  const { tokenApp } = useContext(context);
 
   const changeHandler = (event) => {
     console.log(event.target.files);
@@ -17,6 +19,9 @@ function FileUploadPage() {
     fetch("http://localhost:5000/1/upload", {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${tokenApp}`,
+      },
     })
       .then((response) => response.json())
       .then((result) => {
