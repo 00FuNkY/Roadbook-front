@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { context } from "./context";
 import Sign from "./Sign";
 import { API_URL } from "../env";
+import styled from "styled-components";
 
 const axios = require("axios");
 
@@ -21,10 +22,10 @@ function Connection() {
         password: form.password,
       })
       .then((res) => {
-        setTokenApp(res.data.token)
-        setUserId(res.data.id)
+        setTokenApp(res.data.token);
+        setUserId(res.data.id);
       })
-      .then(history.push("/city"))
+      .then(history.push("/city"));
   };
 
   return (
@@ -51,7 +52,6 @@ function Connection() {
           ENVOYER
         </button>
       </form>
-
       <Sign />
     </>
   );

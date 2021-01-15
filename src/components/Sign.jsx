@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { context } from "./context";
 import { API_URL } from "../env";
+import styled from "styled-components";
 
 const axios = require("axios");
 
@@ -43,6 +44,7 @@ function Sign() {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
       </label>
+
       <button type="submit" value="Submit" onClick={(e) => sendData(e)}>
         ENVOYER
       </button>
@@ -50,4 +52,14 @@ function Sign() {
   );
 }
 
+// const StyledForm = styled.form`
+//   display: flex;
+//   justify-content: space-evenly;
+//   margin: 10em;
+// `;
+// const StyledLabel = styled.label`
+//   display: flex;
+//   justify-content: space-evenly;
+//   margin: 20em;
+// `;
 export default Sign;
